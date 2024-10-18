@@ -1,0 +1,288 @@
+{
+    "error": true,
+    "reason": "RateLimited",
+    "message": "Visit https://ipapi.co/ratelimited/ for details"
+}
+{
+    "error": true,
+    "reason": "RateLimited",
+    "message": "Visit https://ipapi.co/ratelimited/ for details"
+}
+{"success":false,"message":"You've hit the monthly limit"}
+{"success":false,"message":"You've hit the monthly limit"}
+{"ipVersion":4,"ipAddress":"154.36.110.199","latitude":50.110882,"longitude":8.681996,"countryName":"Germany","countryCode":"DE","timeZone":"+02:00","zipCode":"65931","cityName":"Frankfurt am Main","regionName":"Hessen","isProxy":false,"continent":"Europe","continentCode":"EU","currency":{"code":"EUR","name":"Euro"},"language":"German","timeZones":["Europe\/Berlin","Europe\/Busingen"],"tlds":[".de"]}
+{"ipVersion":4,"ipAddress":"173.0.9.70","latitude":28.172977,"longitude":-80.598404,"countryName":"United States of America","countryCode":"US","timeZone":"-04:00","zipCode":"32937","cityName":"Melbourne","regionName":"Florida","isProxy":false,"continent":"Americas","continentCode":"AM","currency":{"code":"USD","name":"US Dollar"},"language":"English","timeZones":["America\/Adak","America\/Anchorage","America\/Boise","America\/Chicago","America\/Denver","America\/Detroit","America\/Indiana\/Indianapolis","America\/Indiana\/Knox","America\/Indiana\/Marengo","America\/Indiana\/Petersburg","America\/Indiana\/Tell_City","America\/Indiana\/Vevay","America\/Indiana\/Vincennes","America\/Indiana\/Winamac","America\/Juneau","America\/Kentucky\/Louisville","America\/Kentucky\/Monticello","America\/Los_Angeles","America\/Menominee","America\/Metlakatla","America\/New_York","America\/Nome","America\/North_Dakota\/Beulah","America\/North_Dakota\/Center","America\/North_Dakota\/New_Salem","America\/Phoenix","America\/Sitka","America\/Yakutat","Pacific\/Honolulu"],"tlds":[".us"]}
+{"access_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjczOTg5NjYwNDksImV4cCI6MTcyOTMxODQwMX0.caMv4Yoea-Iy8lVGCI_qyC1b1_S98x-c0SKtomBfzSE","token_type":"bearer","user":{"id":7398966049,"username":"Medhanye7","first_name":"⩙ ᑫᑌ!ᗴTᒪY","last_name":"","is_premium":true,"status_id":null,"rating":0,"is_telegram_hidden":false,"squad_id":null,"notifications_enabled":true}}
+{"detail":"Invalid init data signature"}
+{"user_id":7398966049,"streak":2}
+{"user_id":7398966049,"streak":3,"is_increased":true,"is_allowed":true}
+{"id":7398966049,"username":"Medhanye7","first_name":"⩙ ᑫᑌ!ᗴTᒪY","last_name":"","is_premium":true,"rating":500,"squad_id":null,"status_id":null,"is_telegram_hidden":false,"notifications_enabled":true}
+[{"id":129,"title":"Extra Stars Purchase #3","description":"Buy 3000 Telegram Stars to get bonus rating every day and unlock extra task!","icon_url":"/images/tasks/DailyStars.svg","type":"boost","award":162000,"payload":{"url":"someting","ton_wallet":null,"amount":3000.0,"run_button":"Buy","check_button":"Check task","group":2,"limited":false},"is_completed":false},{"id":130,"title":"Extra Stars Purchase #4","description":"Buy 5000 Telegram Stars to get bonus rating every day and unlock extra task!","icon_url":"/images/tasks/DailyStars.svg","type":"boost","award":270000,"payload":{"url":"someting","ton_wallet":null,"amount":5000.0,"run_button":"Buy","check_button":"Check task","group":2,"limited":false},"is_completed":false},{"id":128,"title":"Promote TON blockchain #5","description":"Use TON blockchain and make transactions to get free rating every day.","icon_url":"/images/tasks/TON_Logo.svg","type":"ton_transaction","award":120000,"payload":{"url":"someting","ton_wallet":"UQBZ1Lzyfx81Vph2EL2jsQk9pzqo3SC5wit6OyS23ZrUO_xH","amount":3.0,"run_button":"Create transaction","check_button":"Check transaction","group":3,"limited":true},"is_completed":false},{"id":127,"title":"Promote TON blockchain #4","description":"Use TON blockchain and make transactions to get free rating every day.","icon_url":"/images/tasks/TON_Logo.svg","type":"ton_transaction","award":100000,"payload":{"url":"someting","ton_wallet":"UQBZ1Lzyfx81Vph2EL2jsQk9pzqo3SC5wit6OyS23ZrUO_xH","amount":2.5,"run_button":"Create transaction","check_button":"Check transaction","group":3,"limited":true},"is_completed":false},{"id":104,"title":"Extra Stars Purchase #2","description":"Buy 2,500 Telegram Stars to get bonus rating every day and unlock extra task!","icon_url":"/images/tasks/DailyStars.svg","type":"boost","award":135000,"payload":{"url":"someting","ton_wallet":null,"amount":2500.0,"run_button":"Buy","check_button":"Check task","group":2,"limited":false},"is_completed":false},{"id":113,"title":"Promote TON blockchain #3","description":"Use TON blockchain and make transactions to get free rating every day.","icon_url":"/images/tasks/TON_Logo.svg","type":"ton_transaction","award":80000,"payload":{"url":"someting","ton_wallet":"UQBZ1Lzyfx81Vph2EL2jsQk9pzqo3SC5wit6OyS23ZrUO_xH","amount":2.0,"run_button":"Create transaction","check_button":"Check transaction","group":3,"limited":true},"is_completed":false},{"id":34,"title":"Extra Stars Purchase #1","description":"Buy extra 1,500 Telegram Stars to get bonus rating every day.","icon_url":"/images/tasks/DailyStars.svg","type":"boost","award":80000,"payload":{"url":"someting","ton_wallet":null,"amount":1500.0,"run_button":"Buy","check_button":"Check task","group":2,"limited":false},"is_completed":false},{"id":32,"title":"Stars Purchase","description":"Buy 1,000 Telegram Stars to get bonus rating every day and unlock extra task!","icon_url":"/images/tasks/DailyStars.svg","type":"boost","award":50000,"payload":{"url":"someting","ton_wallet":null,"amount":1000.0,"run_button":"Buy","check_button":"Check task","group":2,"limited":false},"is_completed":false},{"id":29,"title":"Follow Major in Telegram","description":"Subscribe and keep following to earn bonus rating every day.","icon_url":"/images/tasks/Telegram_Logo.svg","type":"subscribe_channel","award":1250,"payload":{"url":"https://t.me/starsmajor","ton_wallet":null,"amount":null,"run_button":"Subscribe","check_button":"Check subscription","group":null,"limited":false},"is_completed":false},{"id":16,"title":"Share in Telegram Stories","description":"Share information about your rank in stories to get an additional rating.","icon_url":"/images/tasks/stories.svg","type":"stories","award":5000,"payload":{"url":"someting","ton_wallet":"UQBZ1Lzyfx81Vph2EL2jsQk9pzqo3SC5wit6OyS23ZrUO_xH","amount":0.5,"run_button":"Share","check_button":"Check task","group":null,"limited":false},"is_completed":false},{"id":15,"title":"Promote TON blockchain","description":"Use TON blockchain and make transactions to get free rating every day.","icon_url":"/images/tasks/TON_Logo.svg","type":"ton_transaction","award":20000,"payload":{"url":"someting","ton_wallet":"UQBZ1Lzyfx81Vph2EL2jsQk9pzqo3SC5wit6OyS23ZrUO_xH","amount":0.5,"run_button":"Create transaction","check_button":"Check transaction","group":3,"limited":true},"is_completed":false},{"id":106,"title":"Promote TON blockchain #2","description":"Use TON blockchain and make transactions to get free rating every day.","icon_url":"/images/tasks/TON_Logo.svg","type":"ton_transaction","award":40000,"payload":{"url":"someting","ton_wallet":"UQBZ1Lzyfx81Vph2EL2jsQk9pzqo3SC5wit6OyS23ZrUO_xH","amount":1.0,"run_button":"Create transaction","check_button":"Check transaction","group":3,"limited":true},"is_completed":false},{"id":5,"title":"TON Channels","description":"Add a chat folder with channels about the TON ecosystem and earn stars every day.","icon_url":"/images/tasks/Folder_Logo.svg","type":"without_check","award":1750,"payload":{"url":"https://t.me/addlist/iNEtYPniWmVhYWJi","ton_wallet":null,"amount":null,"run_button":"Subscribe","check_button":"Check subscription","group":null,"limited":false},"is_completed":false},{"id":8,"title":"Boost Major channel","description":"Boost official Major channel to help it get additional features. Keep your boost to collect free rating every day.","icon_url":"/images/tasks/Boost_Logo.svg","type":"boost_channel","award":1500,"payload":{"url":"https://t.me/boost/starsmajor","ton_wallet":null,"amount":null,"run_button":"Boost channel","check_button":"Check boost","group":null,"limited":false},"is_completed":false},{"id":4,"title":"Invite more Friends","description":"Invite at least 10 friends today.","icon_url":"/images/tasks/Invite_Logo.svg","type":"referral","award":3250,"payload":{"url":"something","ton_wallet":null,"amount":10.0,"run_button":"Invite friend","check_button":"Check task","group":null,"limited":false},"is_completed":false},{"id":82,"title":"Boost Roxman channel","description":"Boost official Roxman channel to help it get additional features. Keep your boost to collect free rating every day.","icon_url":"/images/tasks/Boost_Logo.svg","type":"boost_channel","award":500,"payload":{"url":"https://t.me/boost/roxman","ton_wallet":null,"amount":null,"run_button":"Boost channel","check_button":"Check boost","group":null,"limited":false},"is_completed":false}]
+{"task_id":129,"is_completed":false}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+Rate limit exceeded. Only the first request in a burst is allowed.
+{"task_id":104,"is_completed":false}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+Rate limit exceeded. Only the first request in a burst is allowed.
+{"task_id":29,"is_completed":true}
+{"task_id":16,"is_completed":true}
+{"task_id":15,"is_completed":false}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+Rate limit exceeded. Only the first request in a burst is allowed.
+{"task_id":4,"is_completed":false}
+{"detail":"You have reached the rate limit for this endpoint"}
+[{"id":15133,"title":"Watch YouTube Shorts #7","description":"Watch our new shorts on our YouTube channel to get code!","icon_url":"/images/tasks/YouTube.svg","type":"watch_youtube","award":750,"payload":{"url":"https://youtu.be/jNhdX7_vQko","ton_wallet":null,"amount":null,"run_button":"Watch","check_button":"Check task","group":1,"limited":false},"is_completed":false},{"id":15117,"title":"Make Your Channel Popular","description":"Watch our new shorts on our YouTube channel to get reward!","icon_url":"/images/tasks/YouTube.svg","type":"watch_youtube","award":750,"payload":{"url":"https://youtu.be/prz8d5Kbcco","ton_wallet":null,"amount":null,"run_button":"Watch","check_button":"Check task","group":1,"limited":false},"is_completed":false},{"id":15111,"title":"Watch YouTube Shorts #6","description":"Watch our new shorts on our YouTube channel to get code!","icon_url":"/images/tasks/YouTube.svg","type":"code","award":750,"payload":{"url":"https://youtube.com/shorts/EMvZhysyEuk","ton_wallet":null,"amount":null,"run_button":"Watch","check_button":"Check task","group":1,"limited":false},"is_completed":false},{"id":15103,"title":"Watch YouTube Shorts #5","description":"Watch our new shorts on our YouTube channel to get reward!","icon_url":"/images/tasks/YouTube.svg","type":"watch_youtube","award":750,"payload":{"url":"https://youtube.com/shorts/fADx0idyGQg?si=G48QVFB2oQjzJ58N","ton_wallet":null,"amount":null,"run_button":"Watch","check_button":"Check task","group":1,"limited":false},"is_completed":false},{"id":15102,"title":"Watch YouTube Shorts #4","description":"Watch our new shorts on our YouTube channel to get code!","icon_url":"/images/tasks/YouTube.svg","type":"code","award":750,"payload":{"url":"https://youtube.com/shorts/4TqOjf5zrKY?feature=share","ton_wallet":null,"amount":null,"run_button":"Watch","check_button":"Check task","group":1,"limited":false},"is_completed":false},{"id":15096,"title":"Watch YouTube Video #2","description":"Watch our video on our YouTube channel to get reward!","icon_url":"/images/tasks/YouTube.svg","type":"watch_youtube","award":1250,"payload":{"url":"https://youtu.be/3RH7jRAaVqA?si=YXaoX-GWPxVdam7m","ton_wallet":null,"amount":null,"run_button":"Watch","check_button":"Check task","group":1,"limited":false},"is_completed":false},{"id":15094,"title":"Watch YouTube Shorts #3","description":"Watch our new shorts on our YouTube channel to get reward!","icon_url":"/images/tasks/YouTube.svg","type":"watch_youtube","award":750,"payload":{"url":"https://youtube.com/shorts/N55FZb3Wht4?feature=share","ton_wallet":null,"amount":null,"run_button":"Watch","check_button":"Check task","group":1,"limited":false},"is_completed":false},{"id":15092,"title":"Watch YouTube Video #1","description":"Watch our video on our YouTube channel to get secret code!","icon_url":"/images/tasks/YouTube.svg","type":"code","award":2500,"payload":{"url":"https://youtu.be/WkFDog19o-A","ton_wallet":null,"amount":null,"run_button":"Watch","check_button":"Check task","group":1,"limited":false},"is_completed":false},{"id":15112,"title":"Binance x TON","description":"Make a transaction to celebrate TON listing on Binance. Limited one-time bonus.","icon_url":"/images/tasks/one_time_ton.svg","type":"ton_transaction","award":30000,"payload":{"url":"someting","ton_wallet":"UQBZ1Lzyfx81Vph2EL2jsQk9pzqo3SC5wit6OyS23ZrUO_xH","amount":0.55,"run_button":"Create transaction","check_button":"Check transaction","group":null,"limited":false},"is_completed":false},{"id":15033,"title":"Status Purchase","description":"Purchase NFT status badge to display a unique icon next to your username.","icon_url":"/images/tasks/Status.svg","type":"boost","award":10000,"payload":{"url":"someting","ton_wallet":null,"amount":750.0,"run_button":"Buy","check_button":"Check task","group":null,"limited":false},"is_completed":false},{"id":15021,"title":"One-time Stars Purchase","description":"Buy 10 Telegram Stars","icon_url":"/images/tasks/one_time_stars.svg","type":"boost","award":5000,"payload":{"url":"someting","ton_wallet":null,"amount":10.0,"run_button":"Buy","check_button":"Check task","group":null,"limited":false},"is_completed":false},{"id":15132,"title":"AKEDO Games","description":"Play AKEDO for 3 Billion $AKE Airdrop & Win Exclusive NFT worth 128TON!!!","icon_url":"/images/tasks/akedo.svg","type":"without_check","award":2500,"payload":{"url":"https://t.me/Akedo_Bot/AkedogGenerator?startapp=42992622635234_5580869549","ton_wallet":null,"amount":null,"run_button":"Play","check_button":"Check task","group":null,"limited":false},"is_completed":false},{"id":15134,"title":"FadeWallet: 1=$1 per friend","description":"Join FadeWallet, invite friends, earn $1 each! Part of Telegram ecosystem with 1B+ users!","icon_url":"/images/tasks/Fadewallet.svg","type":"without_check","award":2500,"payload":{"url":"https://t.me/fadewalletbot/app","ton_wallet":null,"amount":null,"run_button":"Play","check_button":"Check task","group":null,"limited":false},"is_completed":false},{"id":15124,"title":"Follow Stock Market & Trading","description":"Subscribe to Stock Market & Trading channel to receive your reward","icon_url":"/images/tasks/trade.svg","type":"subscribe_channel","award":2500,"payload":{"url":"https://t.me/+GZllaX9lPf8xYjU0","ton_wallet":null,"amount":null,"run_button":"Subscribe","check_button":"Check subscription","group":null,"limited":false},"is_completed":false},{"id":15121,"title":"Follow Startups & Ventures","description":"Subscribe to Startups & Ventures channel to receive your reward","icon_url":"/images/tasks/startups.svg","type":"subscribe_channel","award":2500,"payload":{"url":"https://t.me/+0Ka2GRv2Gzw4Yjgy","ton_wallet":null,"amount":null,"run_button":"Subscribe","check_button":"Check subscription","group":null,"limited":false},"is_completed":false},{"id":15123,"title":"Follow Crypto Insider","description":"Subscribe to Crypto Insider channel to receive your reward","icon_url":"/images/tasks/cryp.svg","type":"subscribe_channel","award":2500,"payload":{"url":"https://t.me/+5-TDDZgY_xsyZWMy","ton_wallet":null,"amount":null,"run_button":"Subscribe","check_button":"Check subscription","group":null,"limited":false},"is_completed":false},{"id":15125,"title":"Follow Mr. Buzz","description":"Subscribe to Mr. Buzz's channel to receive your reward","icon_url":"/images/tasks/Buzz.svg","type":"subscribe_channel","award":2500,"payload":{"url":"https://t.me/+G5fJsEEoM94xMDJk","ton_wallet":null,"amount":null,"run_button":"Subscribe","check_button":"Check subscription","group":null,"limited":false},"is_completed":false},{"id":15126,"title":"Open JetTon Lootbox","description":"Launch JetTon Farming bot and open the free lootbox to complete the task! Share 170 000$ prize pool!","icon_url":"/images/tasks/jetton.svg","type":"external_api","award":2500,"payload":{"url":"https://t.me/JettonFarmingBot/jetton?startapp=r1000001007","ton_wallet":null,"amount":null,"run_button":"Play","check_button":"Check task","group":null,"limited":false},"is_completed":false},{"id":15122,"title":"Follow Venture Capital","description":"Subscribe to VC channel to receive your reward","icon_url":"/images/tasks/venture.svg","type":"subscribe_channel","award":2500,"payload":{"url":"https://t.me/+4_N0ks2qsisyNTU0","ton_wallet":null,"amount":null,"run_button":"Subscribe","check_button":"Check subscription","group":null,"limited":false},"is_completed":false},{"id":15131,"title":"Follow Roxman in Telegram","description":"Subscribe & get rewards","icon_url":"/images/tasks/Telegram_Logo.svg","type":"subscribe_channel","award":1750,"payload":{"url":"https://t.me/roxman","ton_wallet":null,"amount":null,"run_button":"Subscribe","check_button":"Check subscription","group":null,"limited":false},"is_completed":false}]
+{"task_id":15133,"is_completed":true}
+{"task_id":15117,"is_completed":true}
+{"detail":"An application error occurred"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+Rate limit exceeded. Only the first request in a burst is allowed.
+{"task_id":15094,"is_completed":true}
+{"detail":"An application error occurred"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+Rate limit exceeded. Only the first request in a burst is allowed.
+{"task_id":15132,"is_completed":true}
+{"task_id":15134,"is_completed":true}
+{"task_id":15124,"is_completed":false}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+Rate limit exceeded. Only the first request in a burst is allowed.
+{"task_id":15126,"is_completed":false}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"detail":"You have reached the rate limit for this endpoint"}
+{"success":true}
+{
+    "2024-09-14": {
+        "choice_1": 4,
+        "choice_2": 8,
+        "choice_3": 15,
+        "choice_4": 16
+    },
+    "2024-09-15": {
+        "choice_1": 8,
+        "choice_2": 4,
+        "choice_3": 10,
+        "choice_4": 1
+    },
+    "2024-09-16": {
+        "choice_1": 3,
+        "choice_2": 10,
+        "choice_3": 1,
+        "choice_4": 9
+    },
+    "2024-09-17": {
+        "choice_1": 10,
+        "choice_2": 4,
+        "choice_3": 1,
+        "choice_4": 16
+    },
+    "2024-09-18": {
+        "choice_1": 8,
+        "choice_2": 3,
+        "choice_3": 7,
+        "choice_4": 4
+    },
+    "2024-09-19": {
+        "choice_1": 9,
+        "choice_2": 4,
+        "choice_3": 10,
+        "choice_4": 2
+    },
+    "2024-09-20": {
+        "choice_1": 3,
+        "choice_2": 5,
+        "choice_3": 1,
+        "choice_4": 2
+    },
+    "2024-09-21": {
+        "choice_1": 13,
+        "choice_2": 2,
+        "choice_3": 11,
+        "choice_4": 10
+    },
+    "2024-09-22": {
+        "choice_1": 6,
+        "choice_2": 7,
+        "choice_3": 5,
+        "choice_4": 4
+    },
+    "2024-09-23": {
+        "choice_1": 4,
+        "choice_2": 3,
+        "choice_3": 2,
+        "choice_4": 1
+    },
+    "2024-09-24": {
+        "choice_1": 5,
+        "choice_2": 7,
+        "choice_3": 8,
+        "choice_4": 9
+    },
+    "2024-09-25": {
+        "choice_1": 3,
+        "choice_2": 4,
+        "choice_3": 7,
+        "choice_4": 6
+    },
+    "2024-09-26": {
+        "choice_1": 13,
+        "choice_2": 14,
+        "choice_3": 11,
+        "choice_4": 12
+    },
+    "2024-09-27": {
+        "choice_1": 10,
+        "choice_2": 4,
+        "choice_3": 5,
+        "choice_4": 1
+    },
+    "2024-09-28": {
+        "choice_1": 3,
+        "choice_2": 5,
+        "choice_3": 1,
+        "choice_4": 7
+    },
+    "2024-09-29": {
+        "choice_1": 4,
+        "choice_2": 7,
+        "choice_3": 9,
+        "choice_4": 3
+    },
+    "2024-09-30": {
+        "choice_1": 13,
+        "choice_2": 7,
+        "choice_3": 6,
+        "choice_4": 5
+    },
+    "2024-10-01": {
+        "choice_1": 14,
+        "choice_2": 7,
+        "choice_3": 3,
+        "choice_4": 10
+    },
+    "2024-10-02": {
+        "choice_1": 15,
+        "choice_2": 16,
+        "choice_3": 3,
+        "choice_4": 1
+    },
+    "2024-10-03": {
+        "choice_1": 15,
+        "choice_2": 4,
+        "choice_3": 9,
+        "choice_4": 10
+    },
+    "2024-10-04": {
+        "choice_1": 3,
+        "choice_2": 6,
+        "choice_3": 9,
+        "choice_4": 1
+    },
+    "2024-10-05": {
+        "choice_1": 13,
+        "choice_2": 6,
+        "choice_3": 12,
+        "choice_4": 10
+    },
+    "2024-10-06": {
+        "choice_1": 1,
+        "choice_2": 2,
+        "choice_3": 3,
+        "choice_4": 4
+    },
+    "2024-10-07": {
+        "choice_1": 12,
+        "choice_2": 3,
+        "choice_3": 14,
+        "choice_4": 5
+    },
+    "2024-10-08": {
+        "choice_1": 13,
+        "choice_2": 4,
+        "choice_3": 8,
+        "choice_4": 6
+    },
+    "2024-10-09": {
+        "choice_1": 14,
+        "choice_2": 5,
+        "choice_3": 6,
+        "choice_4": 7
+    },
+    "2024-10-10": {
+        "choice_1": 4,
+        "choice_2": 3,
+        "choice_3": 2,
+        "choice_4": 1
+    },
+    "2024-10-11": {
+        "choice_1": 10,
+        "choice_2": 3,
+        "choice_3": 12,
+        "choice_4": 1
+    },
+    "2024-10-12": {
+        "choice_1": 10,
+        "choice_2": 14,
+        "choice_3": 12,
+        "choice_4": 1
+    },
+    "2024-10-13": {
+        "choice_1": 1,
+        "choice_2": 3,
+        "choice_3": 2,
+        "choice_4": 5
+    },
+    "2024-10-14": {
+        "choice_1": 6,
+        "choice_2": 3,
+        "choice_3": 4,
+        "choice_4": 5
+    },
+    "2024-10-15": {
+        "choice_1": 5,
+        "choice_2": 3,
+        "choice_3": 12,
+        "choice_4": 9
+    },
+    "2024-10-16": {
+        "choice_1": 1,
+        "choice_2": 2,
+        "choice_3": 3,
+        "choice_4": 8
+    },
+    "2024-10-17": {
+        "choice_1": 5,
+        "choice_2": 2,
+        "choice_3": 14,
+        "choice_4": 11
+    },
+    "2024-10-18": {
+        "choice_1": 2,
+        "choice_2": 12,
+        "choice_3": 4,
+        "choice_4": 10
+    }
+}
+{"correct":[2,12,4,10]}
+{"success":true}
+{"result":1,"rating_award":500}
+{"success":true}
+{"success":true}
+{"success":true}
+{"success":true}
+{"detail":{"need_invites":5,"blocked_until":1729296000.0}}
+{"detail":{"need_invites":5,"blocked_until":1729275279.467295}}
+{"detail":{"need_invites":5,"blocked_until":1729275280.867757}}
+{"detail":{"need_invites":5,"blocked_until":1729275282.25146}}
+{"id":7398966049,"username":"Medhanye7","first_name":"⩙ ᑫᑌ!ᗴTᒪY","last_name":"","is_premium":true,"rating":23368,"squad_id":null,"status_id":null,"is_telegram_hidden":false,"notifications_enabled":true}
