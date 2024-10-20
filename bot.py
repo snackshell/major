@@ -49,7 +49,7 @@ async def get_query_id():
         async with aiofiles.open(data_file, "r") as f:
             content = await f.read()
             if content.strip(): 
-                use_existing = input(f"{blue}Do you want to use this query_id {content.strip()}? {yellow}(y/n): {reset}")
+                use_existing = input(f"{blue}Do you want to use this query_id {yellow} {content.strip()}? {green}(y/n): {reset}")
                 if use_existing.lower() == 'y':
                     return content.strip()
 
@@ -432,9 +432,9 @@ async def main():
 {yellow}░█▀▄░█▀█░█░█░█▀█░{yellow}░█░░░█░█░█░█░█▀▀░▀▀█
 {red}░▀▀░░▀░▀░▀░▀░▀░▀░{red}░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀▀▀
 
-         {yellow}AUTOMATION TOOL FOR MAJ*R{reset}
-         {green}Coder : {white}- @snackshell{reset}
-         {green}Remember : {white}every action has consequences{reset}
+{yellow}AUTOMATION TOOL FOR MAJ*R{reset}
+{green}Coder : {white}- @snackshell{reset}
+{green}Remember : {white}every action has consequences{reset}
     """
     if not await aiofiles.ospath.exists(proxy_file):
         async with aiofiles.open(proxy_file, "a") as w:
@@ -460,10 +460,10 @@ async def main():
             cfg = Config(auto_task=config.get("auto_task", True))
         datas, proxies = await get_data()
         menu = f"""
-{blue}data file :{white} {data_file}
-{blue}proxy file :{white} {proxy_file}
-{blue}total data : {white}{len(datas)}
-{blue}total proxy : {white}{len(proxies)}
+{red}data file :{white} {data_file}
+{red}proxy file :{white} {proxy_file}
+{yellow}total data : {white}{len(datas)}
+{yellow}total proxy : {white}{len(proxies)}
 
 {green}1{white}.set on/off auto task ({(green + "active" if cfg.auto_task else red + "non-active")}{reset})
 {green}2{white}.start bot {green}(multi-process)
