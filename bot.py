@@ -33,6 +33,8 @@ proxy_file = "proxies.txt"
 data_file = "data.txt"
 token_file = "tokens.json"
 config_file = "config.json"
+
+# Initialize colorama for terminal colors
 inits(autoreset=True)
 red = Fore.LIGHTRED_EX
 blue = Fore.LIGHTBLUE_EX
@@ -162,7 +164,6 @@ class MajTod:
                     self.log(f"{yellow}failed get json response !")
                     await countdown(3)
                     continue
-
                 return res
             except (
                 httpx.ProxyError,
@@ -173,41 +174,37 @@ class MajTod:
                 proxy = self.get_random_proxy(0, israndom=True)
                 transport = AsyncProxyTransport.from_url(proxy)
                 self.ses = httpx.AsyncClient(transport=transport)
-                self.log(f"{yellow}proxy error,selecting random proxy !")
+                self.log(f"{yellow}proxy error, selecting random proxy !")
                 await asyncio.sleep(3)
                 continue
             except httpx.NetworkError:
                 self.log(f"{yellow}network error !")
                 await asyncio.sleep(3)
-                asyncio.sleep(3)
                 continue
             except httpx.TimeoutException:
                 self.log(f"{yellow}connection timeout !")
                 await asyncio.sleep(3)
                 continue
             except (httpx.RemoteProtocolError, anyio.EndOfStream):
-                self.log(f"{yellow}connection close without response !")
+                self.log(f"{yellow}connection closed without response !")
                 await asyncio.sleep(3)
                 continue
             except Exception as e:
                 self.log(f"{yellow}{e}")
                 await asyncio.sleep(3)
                 continue
+
     def is_expired(self, token):
         if token is None or isinstance(token, bool):
             return True
         header, payload, sign = token.split(".")
-        deload = urlsafe_b64decode(payload + "==")
-        jeload = json.loads(deload)
-        now = (datetime.now().timestamp()) + 300
-        if now > jeload.get("exp"):
-            return True
-        return False
+        payload_decoded = urlsafe_b64decode(payload + "==")
+        token_data = json.loads(payload_decoded)
+        now = datetime.now().timestamp() + 300  # Adding 5-minute buffer
+        return now > token_data.get("exp")
 
     async def login(self):
-        data = {
-            "init_data": self.query,
-        }
+        data = {"init_data": self.query}
         auth_url = "https://major.glados.app/api/auth/tg/"
         res = await self.http(auth_url, self.headers, json.dumps(data))
         token = res.json().get("access_token")
@@ -215,6 +212,7 @@ class MajTod:
             return False
         self.headers["authorization"] = f"Bearer {token}"
         await update_token(id=self.user.get("id"), token=token)
+        return True
 
     async def start(self):
         if not self.valid:
@@ -224,7 +222,6 @@ class MajTod:
         if not await aiofiles.ospath.exists(token_file):
             async with aiofiles.open(token_file, "w") as w:
                 await w.write(json.dumps({}))
-                
         uid = self.user.get("id")
         first_name = self.user.get("first_name")
         res = await get_by_id(uid)
@@ -240,8 +237,7 @@ class MajTod:
         self.headers["user-agent"] = useragent
         self.headers["authorization"] = f"Bearer {token}"
         if self.is_expired(token):
-            token = await self.login()
-            if token is False:
+            if not await self.login():
                 return int(datetime.now().timestamp()) + 8 * 3600
         streak_url = "https://major.bot/api/user-visits/streak/"
         visit_url = "https://major.bot/api/user-visits/visit/"
@@ -388,7 +384,6 @@ class MajTod:
                 break
         return min(timestamps)
 
-
 async def countdown(t):
     for i in range(t, 0, -1):
         minute, seconds = divmod(i, 60)
@@ -399,22 +394,18 @@ async def countdown(t):
         print(f"waiting for {hour}:{minute}:{seconds} ", flush=True, end="\r")
         await asyncio.sleep(1)
 
-
 async def get_data():
     async with aiofiles.open(data_file) as w:
         read = await w.read()
-        datas = [i for i in read.splitlines() if len
-(datas) > 10]
+        datas = [i for i in read.splitlines() if len(i) > 10]
     async with aiofiles.open(proxy_file) as w:
         read = await w.read()
         proxies = [i for i in read.splitlines() if len(i) > 5]
     return datas, proxies
 
-
 async def bound(sem, data):
     async with sem:
         return await MajTod(*data).start()
-
 
 async def main():
     global data_file, proxy_file
@@ -437,6 +428,7 @@ async def main():
     data_file = args.data
     opt = args.action
     worker = args.worker
+
     banner = f"""
 {green}██████   █████  ███    ██  █████    {green} ██████  ██████  ██████  ███████ ███████
 {green}██   ██ ██   ██ ████   ██ ██   ██    {green}██      ██    ██ ██   ██ ██      ██
@@ -445,8 +437,8 @@ async def main():
 {red}██████  ██   ██ ██   ████ ██   ██    {red} ██████  ██████  ██████  ███████ ███████
 
                     {yellow}AUTOMATION TOOL FOR MAJ*R{reset}
-                    {white}Author : {green}- @medhanye6{reset}
-                    {green}Note : {white}every action has consequences{reset}                  
+                    {white}Coder : {green}- @snackshell{reset}
+                    {green}Remember : {white}every action has consequences{reset}
     """   
     if not await aiofiles.ospath.exists(proxy_file):
         async with aiofiles.open(proxy_file, "a") as w:
@@ -457,6 +449,7 @@ async def main():
     if not await aiofiles.ospath.exists(config_file):
         async with aiofiles.open(config_file, "w") as w:
             await w.write(json.dumps({"auto_task": True}))
+    
     while True:
         if not args.marin:
             os.system("cls" if os.name == "nt" else "clear")
@@ -525,9 +518,9 @@ async def main():
                 now = int(datetime.now().timestamp())
                 await countdown(min(countdowns) - now)
 
-
 if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(main())
     except KeyboardInterrupt:
         exit()
