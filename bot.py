@@ -50,11 +50,12 @@ async def get_query_id():
     if await aiofiles.ospath.exists(data_file):
         async with aiofiles.open(data_file, "r") as f:
             content = await f.read()
-            if content:
+            if content.strip():  # Only ask if query_id exists
                 use_existing = input(f"{blue}Do you want to use this query_id {content.strip()}? (y/n): {reset}")
                 if use_existing.lower() == 'y':
                     return content.strip()
 
+    # Ask for query_id if none exists or if user chose not to use the existing one
     query_id = input(f"{green}Enter your query_id: {reset}")
     async with aiofiles.open(data_file, "w") as f:
         await f.write(query_id)
@@ -197,6 +198,8 @@ class MajTod:
         token_data = json.loads(payload_decoded)
         now = datetime.now().timestamp() + 300  # Adding 5-minute buffer
         return now > token_data.get("exp")
+
+          return now > token_data.get("exp")
 
     async def login(self):
         data = {"init_data": self.query}
@@ -426,7 +429,7 @@ async def main():
     print(banner)
     
     query_id = await get_query_id()
-
+    
     if not await aiofiles.ospath.exists(proxy_file):
         async with aiofiles.open(proxy_file, "a") as w:
             pass
@@ -497,7 +500,6 @@ async def main():
 
 if __name__ == "__main__":
     try:
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(main())
+        asyncio.run(main())
     except KeyboardInterrupt:
         exit()
