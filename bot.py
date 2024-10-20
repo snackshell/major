@@ -178,7 +178,7 @@ class MajTod:
                 continue
             except httpx.NetworkError:
                 self.log(f"{yellow}network error !")
-                await
+                await asyncio.sleep(3)
                 asyncio.sleep(3)
                 continue
             except httpx.TimeoutException:
@@ -193,7 +193,6 @@ class MajTod:
                 self.log(f"{yellow}{e}")
                 await asyncio.sleep(3)
                 continue
-
     def is_expired(self, token):
         if token is None or isinstance(token, bool):
             return True
