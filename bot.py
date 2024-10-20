@@ -43,6 +43,21 @@ white = Fore.LIGHTWHITE_EX
 reset = Style.RESET_ALL
 line = white + "~" * 50
 
+async def get_query_id():
+    if await aiofiles.ospath.exists(data_file):
+        async with aiofiles.open(data_file, "r") as f:
+            content = await f.read()
+            if content:
+                print(f"{yellow}Existing query_id found: {green}{content.strip()}{reset}")
+                use_existing = input(f"{blue}Do you want to use this query_id? (y/n): {reset}")
+                if use_existing.lower() == "y":
+                    return content.strip()
+
+    query_id = input(f"{green}Enter your query_id: {reset}")
+    async with aiofiles.open(data_file, "w") as f:
+        await f.write(query_id)
+    print(f"{blue}query_id saved to {data_file}{reset}")
+    return query_id
 
 class MajTod:
     def __init__(self, id: int, query: str, proxies: list, cfg=Config):
@@ -163,7 +178,8 @@ class MajTod:
                 continue
             except httpx.NetworkError:
                 self.log(f"{yellow}network error !")
-                await asyncio.sleep(3)
+                await
+                asyncio.sleep(3)
                 continue
             except httpx.TimeoutException:
                 self.log(f"{yellow}connection timeout !")
@@ -174,7 +190,7 @@ class MajTod:
                 await asyncio.sleep(3)
                 continue
             except Exception as e:
-                self.log(f"{yellow}e")
+                self.log(f"{yellow}{e}")
                 await asyncio.sleep(3)
                 continue
 
@@ -198,7 +214,6 @@ class MajTod:
         token = res.json().get("access_token")
         if token is None:
             return False
-        # return token
         self.headers["authorization"] = f"Bearer {token}"
         await update_token(id=self.user.get("id"), token=token)
 
@@ -210,7 +225,7 @@ class MajTod:
         if not await aiofiles.ospath.exists(token_file):
             async with aiofiles.open(token_file, "w") as w:
                 await w.write(json.dumps({}))
-
+                
         uid = self.user.get("id")
         first_name = self.user.get("first_name")
         res = await get_by_id(uid)
@@ -293,7 +308,7 @@ class MajTod:
                     datetime.fromtimestamp(next_timestamp).isoformat(" ").split(".")[0]
                 )
                 self.log(
-                    f"{yellow}next time to play puzzel game : {white}{next_isoformat}"
+                    f"{yellow}next time to play puzzle game : {white}{next_isoformat}"
                 )
             else:
                 _headers = {"User-Agent": "Marin Kitagawa"}
@@ -311,7 +326,7 @@ class MajTod:
                         self.log(f"{green}get reward from puzzle game : {white}5000")
                     else:
                         self.log(
-                            f"{red}failed get reward from puzzle game, maybe asnwer is wrong"
+                            f"{red}failed get reward from puzzle game, maybe answer is wrong"
                         )
             res = await self.http(roulette_url, self.headers)
             detail = res.json().get("detail")
@@ -389,7 +404,8 @@ async def countdown(t):
 async def get_data():
     async with aiofiles.open(data_file) as w:
         read = await w.read()
-        datas = [i for i in read.splitlines() if len(i) > 10]
+        datas = [i for i in read.splitlines() if len
+(datas) > 10]
     async with aiofiles.open(proxy_file) as w:
         read = await w.read()
         proxies = [i for i in read.splitlines() if len(i) > 5]
@@ -423,11 +439,16 @@ async def main():
     opt = args.action
     worker = args.worker
     banner = f"""
-{blue}┏┓┳┓┏┓  ┏┓    •     {green}Automation for {yellow}Maj*r
-{blue}┗┓┃┃┗┓  ┃┃┏┓┏┓┓┏┓┏╋ {white}Author : {green}- @medhanye6
-{blue}┗┛┻┛┗┛  ┣┛┛ ┗┛┃┗ ┗┗ {green}Note : {white}every action has consequences
-{blue}              ┛       
-    """
+{green}██████   █████  ███    ██  █████    {green} ██████  ██████  ██████  ███████ ███████
+{green}██   ██ ██   ██ ████   ██ ██   ██    {green}██      ██    ██ ██   ██ ██      ██
+{yellow}██████  ███████ ██ ██  ██ ███████    {yellow}██      ██    ██ ██   ██ █████   ███████
+{red}██   ██ ██   ██ ██  ██ ██ ██   ██    {red} ██      ██    ██ ██   ██ ██           ██
+{red}██████  ██   ██ ██   ████ ██   ██    {red} ██████  ██████  ██████  ███████ ███████
+
+                    {yellow}AUTOMATION TOOL FOR MAJ*R{reset}
+                    {white}Author : {green}- @medhanye6{reset}
+                    {green}Note : {white}every action has consequences{reset}                  
+    """   
     if not await aiofiles.ospath.exists(proxy_file):
         async with aiofiles.open(proxy_file, "a") as w:
             pass
@@ -457,8 +478,8 @@ async def main():
 {green}total proxy : {white}{len(proxies)}
 
     {green}1{white}. set on/off auto task ({(green + "active" if cfg.auto_task else red + "non-active")}{reset})
-    {green}2{white}. start bot {green}(multi proses)
-    {green}3{white}. start bot {green}(single proses)
+    {green}2{white}. start bot {green}(multi-process)
+    {green}3{white}. start bot {green}(single process)
         """
         print(banner)
         print(menu)
