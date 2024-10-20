@@ -46,6 +46,7 @@ reset = Style.RESET_ALL
 line = white + "~" * 50
 
 async def get_query_id():
+    # Check if data.txt exists and is not empty
     if await aiofiles.ospath.exists(data_file):
         async with aiofiles.open(data_file, "r") as f:
             content = await f.read()
@@ -55,6 +56,7 @@ async def get_query_id():
                 if use_existing.lower() == "y":
                     return content.strip()
 
+    # If no valid query_id is found, ask for input and save it
     query_id = input(f"{green}Enter your query_id: {reset}")
     async with aiofiles.open(data_file, "w") as f:
         await f.write(query_id)
@@ -71,7 +73,7 @@ class MajTod:
         self.valid = True
         if user is None:
             self.valid = False
-            self.log(f"{red}The data entered has wrong format !")
+            self.log(f"{red}The data entered has wrong format!")
             return None
         self.user = {}
         uid = re.search(r"\"id\"\:(.*?)\,", user)
@@ -82,7 +84,7 @@ class MajTod:
                 self.user["first_name"] = first_name.group(1)
         else:
             self.valid = False
-            self.log(f"{red}The data entered has wrong format !")
+            self.log(f"{red}The data entered has wrong format!")
             return None
         self.headers = {
             "accept": "application/json, text/plain, */*",
@@ -125,9 +127,9 @@ class MajTod:
                     res = await self.http(ipinfo3_url, {"User-Agent": "Marin-Kitagawa"})
                     ip = res.json().get("ipAddress")
                     country = res.json().get("countryCode")
-            self.log(f"{green}ip : {white}{ip} {green}country : {white}{country}")
+            self.log(f"{green}ip: {white}{ip} {green}country: {white}{country}")
         except json.decoder.JSONDecodeError:
-            self.log(f"{green}ip : {white}None {green}country : {white}None")
+            self.log(f"{green}ip: {white}None {green}country: {white}None")
 
     def get_random_proxy(self, isself, israndom=False):
         if israndom:
@@ -154,14 +156,14 @@ class MajTod:
                 async with aiofiles.open(log_file, "a", encoding="utf-8") as hw:
                     await hw.write(f"{res.text}\n")
                 if "<title>" in res.text:
-                    self.log(f"{yellow}failed get json response !")
+                    self.log(f"{yellow}failed get json response!")
                     await countdown(3)
                     continue
                 if (
                     "Rate limit exceeded." in res.text
                     or "Internal Server Error" in res.text
                 ):
-                    self.log(f"{yellow}failed get json response !")
+                    self.log(f"{yellow}failed get json response!")
                     await countdown(3)
                     continue
                 return res
@@ -174,19 +176,19 @@ class MajTod:
                 proxy = self.get_random_proxy(0, israndom=True)
                 transport = AsyncProxyTransport.from_url(proxy)
                 self.ses = httpx.AsyncClient(transport=transport)
-                self.log(f"{yellow}proxy error, selecting random proxy !")
+                self.log(f"{yellow}proxy error, selecting random proxy!")
                 await asyncio.sleep(3)
                 continue
             except httpx.NetworkError:
-                self.log(f"{yellow}network error !")
+                self.log(f"{yellow}network error!")
                 await asyncio.sleep(3)
                 continue
             except httpx.TimeoutException:
-                self.log(f"{yellow}connection timeout !")
+                self.log(f"{yellow}connection timeout!")
                 await asyncio.sleep(3)
                 continue
             except (httpx.RemoteProtocolError, anyio.EndOfStream):
-                self.log(f"{yellow}connection closed without response !")
+                self.log(f"{yellow}connection closed without response!")
                 await asyncio.sleep(3)
                 continue
             except Exception as e:
@@ -357,7 +359,7 @@ class MajTod:
                 if success:
                     self.log(f"{green}get reward from hold coin game : {white}{coin}")
                 else:
-                    self.log(f"{red}failed to get reward from hold coin game !")
+                    self.log(f"{red}failed to get reward from hold coin game!")
             res = await self.http(swipe_coin_url, self.headers)
             detail = res.json().get("detail")
             if detail is not None:
@@ -379,7 +381,7 @@ class MajTod:
                 if success:
                     self.log(f"{green}get reward from swap game : {white}{coin}")
                 else:
-                    self.log(f"{red}failed get reward from swap game !")
+                    self.log(f"{red}failed get reward from swap game!")
             if len(timestamps) >= 3:
                 break
         return min(timestamps)
@@ -395,12 +397,23 @@ async def countdown(t):
         await asyncio.sleep(1)
 
 async def get_data():
+    if not await aiofiles.ospath.exists(data_file):
+        async with aiofiles.open(data_file, "w") as f:
+            pass
+
     async with aiofiles.open(data_file) as w:
         read = await w.read()
-        datas = [i for i in read.splitlines() if len(i) > 10]
+        if not read.strip():
+            # Ask for query_id if file is empty
+            query_id = await get_query_id()
+            datas = [query_id]
+        else:
+            datas = [i for i in read.splitlines() if len(i) > 10]
+
     async with aiofiles.open(proxy_file) as w:
         read = await w.read()
         proxies = [i for i in read.splitlines() if len(i) > 5]
+
     return datas, proxies
 
 async def bound(sem, data):
@@ -428,7 +441,7 @@ async def main():
     data_file = args.data
     opt = args.action
     worker = args.worker
-
+    
     banner = f"""
 {green}░█▀▄░█▀█░█▀█░█▀█░{green}░█▀▀░█▀█░█▀▄░█▀▀░█▀▀
 {yellow}░█▀▄░█▀█░█░█░█▀█░{yellow}░█░░░█░█░█░█░█▀▀░▀▀█
@@ -447,7 +460,7 @@ async def main():
     if not await aiofiles.ospath.exists(config_file):
         async with aiofiles.open(config_file, "w") as w:
             await w.write(json.dumps({"auto_task": True}))
-    
+
     while True:
         if not args.marin:
             os.system("cls" if os.name == "nt" else "clear")
@@ -477,21 +490,21 @@ async def main():
             opt = input(f"{green}input number : {white}") or None
             print(line)
             if not opt:
-                print(f"{yellow}please input correct number !")
-                input(f"{blue}press enter to continue !")
+                print(f"{yellow}please input correct number!")
+                input(f"{blue}press enter to continue!")
                 continue
         if opt == "1":
             async with aiofiles.open(config_file, "w") as w:
                 config["auto_task"] = False if cfg.auto_task else True
                 await w.write(json.dumps(config, indent=4))
-            print(f"{green}success update auto_task config !")
-            input(f"{blue}press enter to continue !")
+            print(f"{green}success update auto_task config!")
+            input(f"{blue}press enter to continue!")
             opt = None
             continue
         elif opt == "2":
             await init()
             if len(datas) <= 0:
-                print(f"{red}fill your data in {data_file} first !")
+                print(f"{red}fill your data in {data_file} first!")
                 exit()
             while True:
                 datas, proxies = await get_data()
@@ -505,7 +518,7 @@ async def main():
         elif opt == "3":
             await init()
             if len(datas) <= 0:
-                print(f"{red}fill your data in {data_file} first !")
+                print(f"{red}fill your data in {data_file} first!")
                 exit()
             while True:
                 datas, proxies = await get_data()
