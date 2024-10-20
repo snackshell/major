@@ -432,9 +432,9 @@ async def main():
 {yellow}░█▀▄░█▀█░█░█░█▀█░{yellow}░█░░░█░█░█░█░█▀▀░▀▀█
 {red}░▀▀░░▀░▀░▀░▀░▀░▀░{red}░▀▀▀░▀▀▀░▀▀░░▀▀▀░▀▀▀
 
-         {red}AUTOMATION TOOL FOR MAJ*R{reset}
-         {yellow}Coder : {white}- @snackshell{reset}
-         {yellow}Remember : {white}every action has consequences{reset}
+         {yellow}AUTOMATION TOOL FOR MAJ*R{reset}
+         {green}Coder : {white}- @snackshell{reset}
+         {green}Remember : {white}every action has consequences{reset}
     """
     if not await aiofiles.ospath.exists(proxy_file):
         async with aiofiles.open(proxy_file, "a") as w:
@@ -460,10 +460,10 @@ async def main():
             cfg = Config(auto_task=config.get("auto_task", True))
         datas, proxies = await get_data()
         menu = f"""
-{green}data file :{white} {data_file}
-{green}proxy file :{white} {proxy_file}
-{green}total data : {white}{len(datas)}
-{green}total proxy : {white}{len(proxies)}
+{blue}data file :{white} {data_file}
+{blue}proxy file :{white} {proxy_file}
+{blue}total data : {white}{len(datas)}
+{blue}total proxy : {white}{len(proxies)}
 
 {green}1{white}.set on/off auto task ({(green + "active" if cfg.auto_task else red + "non-active")}{reset})
 {green}2{white}.start bot {green}(multi-process)
