@@ -36,7 +36,7 @@ Follow this link to register: https://t.me/major/start?startapp=629438076
 
 If you like my work, you can support me through the links below:
 
-- If you want to send support in another form, you can contact me via [Telegram](https://t.me/tigraytechc). or @medhanye6
+- If you want to send support in another form, you can contact me via [Telegram](https://t.me/banacodes).
 
 # How to Use
 
@@ -111,17 +111,15 @@ Here's how to use it on several operating systems:
 
 4. Enter the majtod folder
    ```shell
-   cd MajorAuto
+   cd major
    ```
 
 5. Install the required libraries
    ```shell
-   python -m pip install -r requirements.txt
+   pip install -r requirements.txt
    ```
 
-6. Edit/modify the `data.txt` file, fill the `data.txt` file with your account data. You can get your account data by using the JavaScript code I have provided below.
-
-7. Run/execute the main file
+6. Run/execute the main file
    ```shell
    python bot.py
    ```
@@ -138,12 +136,12 @@ Here's how to use it on several operating systems:
 
 2. Clone this repository
    ```shell
-   git clone https://github.com/Medhanye6/MajorAuto.git
+   git clone https://github.com/snackshell/major.git
    ```
 
 3. Enter the majtod folder
    ```shell
-   cd MajorAuto 
+   cd major
    ```
 
 4. Create a virtual environment and activate it.
@@ -174,21 +172,19 @@ Here's how to use it on several operating systems:
 
 2. Clone this repository
    ```shell
-   git clone https://github.com/Medhanye6/MajorAuto.git
+   git clone https://github.com/snackshell/major.git
    ```
 
 3. Enter the majtod folder
    ```shell
-   cd MajorAuto 
+   cd major
    ```
 
 4. Install the required libraries
    ```shell
    python -m pip install -r requirements.txt
    ```
-
-5. Edit/modify the `data.txt` file, fill the `data.txt` file with your account data. You can get your account data by using the JavaScript code I have provided below.
-
+   
 6. Run/execute the main file
    ```shell
    python bot.py
