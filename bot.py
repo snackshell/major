@@ -488,16 +488,18 @@ async def main():
             continue
         elif opt == "2":
             await init()
+            query_id = await get_query_id()
             while True:
                 tasks = [
                     asyncio.create_task(bound(sem, (no, query_id, proxies, cfg)))
-                    for no in range(1)  # Always one query_id
+                    for no in range(1)
                 ]
                 results = await asyncio.gather(*tasks)
                 _now = int(datetime.now().timestamp())
                 await countdown(min(results) - _now)
         elif opt == "3":
             await init()
+            query_id = await get_query_id()
             while True:
                 countdowns = []
                 result = await MajTod(0, query_id, proxies, cfg).start()
