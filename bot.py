@@ -49,7 +49,7 @@ async def get_query_id():
         async with aiofiles.open(data_file, "r") as f:
             content = await f.read()
             if content.strip(): 
-                use_existing = input(f"{blue}Do you want to use this query_id {yellow} {content.strip()}? {green}(y/n): {reset}")
+                use_existing = input(f"{green}Do you want to use this query_id {yellow} {content.strip()} {green}(y/n)? {reset}")
                 if use_existing.lower() == 'y':
                     return content.strip()
 
