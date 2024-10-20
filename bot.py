@@ -460,8 +460,10 @@ async def main():
             cfg = Config(auto_task=config.get("auto_task", True))
         datas, proxies = await get_data()
         menu = f"""
+{green}data file :{white} {data_file}
+{green}proxy file :{white} {proxy_file}
 {green}total data : {white}{len(datas)}
-{green}total proxy : {white}{len(proxies)\n}
+{green}total proxy : {white}{len(proxies)}
 
 {green}1{white}.set on/off auto task ({(green + "active" if cfg.auto_task else red + "non-active")}{reset})
 {green}2{white}.start bot {green}(multi-process)
