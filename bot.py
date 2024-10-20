@@ -196,10 +196,8 @@ class MajTod:
         header, payload, sign = token.split(".")
         payload_decoded = urlsafe_b64decode(payload + "==")
         token_data = json.loads(payload_decoded)
-        now = datetime.now().timestamp() + 300  # Adding 5-minute buffer
+        now = datetime.now().timestamp() + 300
         return now > token_data.get("exp")
-
-          return now > token_data.get("exp")
 
     async def login(self):
         data = {"init_data": self.query}
