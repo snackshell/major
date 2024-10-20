@@ -34,7 +34,6 @@ data_file = "data.txt"
 token_file = "tokens.json"
 config_file = "config.json"
 
-# Initialize colorama for terminal colors
 inits(autoreset=True)
 red = Fore.LIGHTRED_EX
 blue = Fore.LIGHTBLUE_EX
@@ -45,17 +44,15 @@ white = Fore.LIGHTWHITE_EX
 reset = Style.RESET_ALL
 line = white + "~" * 50
 
-# Function to get query_id, ask if it exists or save if missing
 async def get_query_id():
     if await aiofiles.ospath.exists(data_file):
         async with aiofiles.open(data_file, "r") as f:
             content = await f.read()
-            if content.strip():  # Only ask if query_id exists
+            if content.strip(): 
                 use_existing = input(f"{blue}Do you want to use this query_id {content.strip()}? (y/n): {reset}")
                 if use_existing.lower() == 'y':
                     return content.strip()
 
-    # Ask for query_id if none exists or if user chose not to use the existing one
     query_id = input(f"{green}Enter your query_id: {reset}")
     async with aiofiles.open(data_file, "w") as f:
         await f.write(query_id)
@@ -72,7 +69,7 @@ class MajTod:
         self.valid = True
         if user is None:
             self.valid = False
-            self.log(f"{red}The data entered has wrong format!")
+            self.log(f"{red}The data entered has wrong format !")
             return None
         self.user = {}
         uid = re.search(r"\"id\"\:(.*?)\,", user)
@@ -83,7 +80,7 @@ class MajTod:
                 self.user["first_name"] = first_name.group(1)
         else:
             self.valid = False
-            self.log(f"{red}The data entered has wrong format!")
+            self.log(f"{red}The data entered has wrong format !")
             return None
         self.headers = {
             "accept": "application/json, text/plain, */*",
@@ -106,7 +103,9 @@ class MajTod:
 
     def log(self, msg):
         now = datetime.now().isoformat().split("T")[1].split(".")[0]
-        print(f"{black}[{now}]{white}-{blue}[{white}acc {self.p + 1}{blue}]{white} {msg}{reset}")
+        print(
+            f"{black}[{now}]{white}-{blue}[{white}acc {self.p + 1}{blue}]{white} {msg}{reset}"
+        )
 
     async def ipinfo(self):
         ipinfo1_url = "https://ipapi.co/json/"
@@ -124,9 +123,9 @@ class MajTod:
                     res = await self.http(ipinfo3_url, {"User-Agent": "Marin-Kitagawa"})
                     ip = res.json().get("ipAddress")
                     country = res.json().get("countryCode")
-            self.log(f"{green}ip: {white}{ip} {green}country: {white}{country}")
+            self.log(f"{green}ip : {white}{ip} {green}country : {white}{country}")
         except json.decoder.JSONDecodeError:
-            self.log(f"{green}ip: {white}None {green}country: {white}None")
+            self.log(f"{green}ip : {white}None {green}country : {white}None")
 
     def get_random_proxy(self, isself, israndom=False):
         if israndom:
@@ -153,11 +152,14 @@ class MajTod:
                 async with aiofiles.open(log_file, "a", encoding="utf-8") as hw:
                     await hw.write(f"{res.text}\n")
                 if "<title>" in res.text:
-                    self.log(f"{yellow}failed get json response!")
+                    self.log(f"{yellow}failed get json response !")
                     await countdown(3)
                     continue
-                if "Rate limit exceeded." in res.text or "Internal Server Error" in res.text:
-                    self.log(f"{yellow}failed get json response!")
+                if (
+                    "Rate limit exceeded." in res.text
+                    or "Internal Server Error" in res.text
+                ):
+                    self.log(f"{yellow}failed get json response !")
                     await countdown(3)
                     continue
                 return res
@@ -170,19 +172,19 @@ class MajTod:
                 proxy = self.get_random_proxy(0, israndom=True)
                 transport = AsyncProxyTransport.from_url(proxy)
                 self.ses = httpx.AsyncClient(transport=transport)
-                self.log(f"{yellow}proxy error, selecting random proxy!")
+                self.log(f"{yellow}proxy error, selecting random proxy !")
                 await asyncio.sleep(3)
                 continue
             except httpx.NetworkError:
-                self.log(f"{yellow}network error!")
+                self.log(f"{yellow}network error !")
                 await asyncio.sleep(3)
                 continue
             except httpx.TimeoutException:
-                self.log(f"{yellow}connection timeout!")
+                self.log(f"{yellow}connection timeout !")
                 await asyncio.sleep(3)
                 continue
             except (httpx.RemoteProtocolError, anyio.EndOfStream):
-                self.log(f"{yellow}connection closed without response!")
+                self.log(f"{yellow}connection closed without response !")
                 await asyncio.sleep(3)
                 continue
             except Exception as e:
@@ -196,7 +198,7 @@ class MajTod:
         header, payload, sign = token.split(".")
         payload_decoded = urlsafe_b64decode(payload + "==")
         token_data = json.loads(payload_decoded)
-        now = datetime.now().timestamp() + 300
+        now = datetime.now().timestamp() + 300  # Adding 5-minute buffer
         return now > token_data.get("exp")
 
     async def login(self):
@@ -353,7 +355,7 @@ class MajTod:
                 if success:
                     self.log(f"{green}get reward from hold coin game : {white}{coin}")
                 else:
-                    self.log(f"{red}failed to get reward from hold coin game!")
+                    self.log(f"{red}failed to get reward from hold coin game !")
             res = await self.http(swipe_coin_url, self.headers)
             detail = res.json().get("detail")
             if detail is not None:
@@ -375,7 +377,7 @@ class MajTod:
                 if success:
                     self.log(f"{green}get reward from swap game : {white}{coin}")
                 else:
-                    self.log(f"{red}failed get reward from swap game!")
+                    self.log(f"{red}failed get reward from swap game !")
             if len(timestamps) >= 3:
                 break
         return min(timestamps)
@@ -391,10 +393,13 @@ async def countdown(t):
         await asyncio.sleep(1)
 
 async def get_data():
+    async with aiofiles.open(data_file) as w:
+        read = await w.read()
+        datas = [i for i in read.splitlines() if len(i) > 10]
     async with aiofiles.open(proxy_file) as w:
         read = await w.read()
         proxies = [i for i in read.splitlines() if len(i) > 5]
-    return proxies
+    return datas, proxies
 
 async def bound(sem, data):
     async with sem:
@@ -405,8 +410,15 @@ async def main():
     temp_worker = os.cpu_count() / 2
     arg = argparse.ArgumentParser()
     arg.add_argument("--marin", action="store_true")
-    arg.add_argument("--data", "-D", default="data.txt", help="File containing account data")
-    arg.add_argument("--proxy", "-P", default="proxies.txt", help="A file containing a list of proxies")
+    arg.add_argument(
+        "--data", "-D", default="data.txt", help="File containing account data"
+    )
+    arg.add_argument(
+        "--proxy",
+        "-P",
+        default="proxies.txt",
+        help="A file containing a list of proxies",
+    )
     arg.add_argument("--action", "-A", help="Argument to select the menu directly")
     arg.add_argument("--worker", "-W", type=int, help="Worker")
     args = arg.parse_args()
@@ -424,10 +436,6 @@ async def main():
                     {green}Coder : {white}- @snackshell{reset}
                     {green}Remember : {white}every action has consequences{reset}
     """
-    print(banner)
-    
-    query_id = await get_query_id()
-    
     if not await aiofiles.ospath.exists(proxy_file):
         async with aiofiles.open(proxy_file, "a") as w:
             pass
@@ -437,7 +445,7 @@ async def main():
     if not await aiofiles.ospath.exists(config_file):
         async with aiofiles.open(config_file, "w") as w:
             await w.write(json.dumps({"auto_task": True}))
-
+    
     while True:
         if not args.marin:
             os.system("cls" if os.name == "nt" else "clear")
@@ -450,31 +458,32 @@ async def main():
             read = await r.read()
             config = json.loads(read)
             cfg = Config(auto_task=config.get("auto_task", True))
-        proxies = await get_data()
+        datas, proxies = await get_data()
         menu = f"""
 {green}data file :{white} {data_file}
 {green}proxy file :{white} {proxy_file}
-{green}total data : {white}{1}  # Always one query_id
+{green}total data : {white}{len(datas)}
 {green}total proxy : {white}{len(proxies)}
 
     {green}1{white}. set on/off auto task ({(green + "active" if cfg.auto_task else red + "non-active")}{reset})
     {green}2{white}. start bot {green}(multi-process)
     {green}3{white}. start bot {green}(single process)
         """
+        print(banner)
         print(menu)
         if not opt:
             opt = input(f"{green}input number : {white}") or None
             print(line)
             if not opt:
-                print(f"{yellow}please input correct number!")
-                input(f"{blue}press enter to continue!")
+                print(f"{yellow}please input correct number !")
+                input(f"{blue}press enter to continue !")
                 continue
         if opt == "1":
             async with aiofiles.open(config_file, "w") as w:
                 config["auto_task"] = False if cfg.auto_task else True
                 await w.write(json.dumps(config, indent=4))
-            print(f"{green}success update auto_task config!")
-            input(f"{blue}press enter to continue!")
+            print(f"{green}success update auto_task config !")
+            input(f"{blue}press enter to continue !")
             opt = None
             continue
         elif opt == "2":
@@ -498,6 +507,7 @@ async def main():
 
 if __name__ == "__main__":
     try:
-        asyncio.run(main())
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(main())
     except KeyboardInterrupt:
         exit()
