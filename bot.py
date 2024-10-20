@@ -46,7 +46,6 @@ reset = Style.RESET_ALL
 line = white + "~" * 50
 
 async def get_query_id():
-    # Check if data.txt exists and is not empty
     if await aiofiles.ospath.exists(data_file):
         async with aiofiles.open(data_file, "r") as f:
             content = await f.read()
@@ -56,7 +55,6 @@ async def get_query_id():
                 if use_existing.lower() == "y":
                     return content.strip()
 
-    # If no valid query_id is found, ask for input and save it
     query_id = input(f"{green}Enter your query_id: {reset}")
     async with aiofiles.open(data_file, "w") as f:
         await f.write(query_id)
@@ -107,9 +105,7 @@ class MajTod:
 
     def log(self, msg):
         now = datetime.now().isoformat().split("T")[1].split(".")[0]
-        print(
-            f"{black}[{now}]{white}-{blue}[{white}acc {self.p + 1}{blue}]{white} {msg}{reset}"
-        )
+        print(f"{black}[{now}]{white}-{blue}[{white}acc {self.p + 1}{blue}]{white} {msg}{reset}")
 
     async def ipinfo(self):
         ipinfo1_url = "https://ipapi.co/json/"
@@ -159,10 +155,7 @@ class MajTod:
                     self.log(f"{yellow}failed get json response!")
                     await countdown(3)
                     continue
-                if (
-                    "Rate limit exceeded." in res.text
-                    or "Internal Server Error" in res.text
-                ):
+                if "Rate limit exceeded." in res.text or "Internal Server Error" in res.text:
                     self.log(f"{yellow}failed get json response!")
                     await countdown(3)
                     continue
@@ -397,24 +390,11 @@ async def countdown(t):
         await asyncio.sleep(1)
 
 async def get_data():
-    if not await aiofiles.ospath.exists(data_file):
-        async with aiofiles.open(data_file, "w") as f:
-            pass
-
-    async with aiofiles.open(data_file) as w:
-        read = await w.read()
-        if not read.strip():
-            # Ask for query_id if file is empty
-            query_id = await get_query_id()
-            datas = [query_id]
-        else:
-            datas = [i for i in read.splitlines() if len(i) > 10]
-
+    query_id = await get_query_id()  # Automatically handle query_id detection and saving
     async with aiofiles.open(proxy_file) as w:
         read = await w.read()
         proxies = [i for i in read.splitlines() if len(i) > 5]
-
-    return datas, proxies
+    return [query_id], proxies
 
 async def bound(sem, data):
     async with sem:
@@ -425,15 +405,8 @@ async def main():
     temp_worker = os.cpu_count() / 2
     arg = argparse.ArgumentParser()
     arg.add_argument("--marin", action="store_true")
-    arg.add_argument(
-        "--data", "-D", default="data.txt", help="File containing account data"
-    )
-    arg.add_argument(
-        "--proxy",
-        "-P",
-        default="proxies.txt",
-        help="A file containing a list of proxies",
-    )
+    arg.add_argument("--data", "-D", default="data.txt", help="File containing account data")
+    arg.add_argument("--proxy", "-P", default="proxies.txt", help="A file containing a list of proxies")
     arg.add_argument("--action", "-A", help="Argument to select the menu directly")
     arg.add_argument("--worker", "-W", type=int, help="Worker")
     args = arg.parse_args()
@@ -441,7 +414,7 @@ async def main():
     data_file = args.data
     opt = args.action
     worker = args.worker
-    
+
     banner = f"""
 {green}░█▀▄░█▀█░█▀█░█▀█░{green}░█▀▀░█▀█░█▀▄░█▀▀░█▀▀
 {yellow}░█▀▄░█▀█░█░█░█▀█░{yellow}░█░░░█░█░█░█░█▀▀░▀▀█
@@ -503,11 +476,8 @@ async def main():
             continue
         elif opt == "2":
             await init()
-            if len(datas) <= 0:
-                print(f"{red}fill your data in {data_file} first!")
-                exit()
             while True:
-                datas, proxies = await get_data()
+                datas, proxies = await get_data()  # Fetch query_id and proxies
                 tasks = [
                     asyncio.create_task(bound(sem, (no, data, proxies, cfg)))
                     for no, data in enumerate(datas)
@@ -517,11 +487,8 @@ async def main():
                 await countdown(min(results) - _now)
         elif opt == "3":
             await init()
-            if len(datas) <= 0:
-                print(f"{red}fill your data in {data_file} first!")
-                exit()
             while True:
-                datas, proxies = await get_data()
+                datas, proxies = await get_data()  # Fetch query_id and proxies
                 countdowns = []
                 for no, data in enumerate(datas):
                     result = await MajTod(no, data, proxies, cfg).start()
