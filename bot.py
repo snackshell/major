@@ -45,14 +45,14 @@ white = Fore.LIGHTWHITE_EX
 reset = Style.RESET_ALL
 line = white + "~" * 50
 
+# Function to get query_id, ask if it exists or save if missing
 async def get_query_id():
     if await aiofiles.ospath.exists(data_file):
         async with aiofiles.open(data_file, "r") as f:
             content = await f.read()
             if content:
-                print(f"{yellow}Existing query_id found: {green}{content.strip()}{reset}")
-                use_existing = input(f"{blue}Do you want to use this query_id? (y/n): {reset}")
-                if use_existing.lower() == "y":
+                use_existing = input(f"{blue}Do you want to use this query_id {content.strip()}? (y/n): {reset}")
+                if use_existing.lower() == 'y':
                     return content.strip()
 
     query_id = input(f"{green}Enter your query_id: {reset}")
@@ -390,11 +390,10 @@ async def countdown(t):
         await asyncio.sleep(1)
 
 async def get_data():
-    query_id = await get_query_id()  # Automatically handle query_id detection and saving
     async with aiofiles.open(proxy_file) as w:
         read = await w.read()
         proxies = [i for i in read.splitlines() if len(i) > 5]
-    return [query_id], proxies
+    return proxies
 
 async def bound(sem, data):
     async with sem:
@@ -423,7 +422,11 @@ async def main():
                     {red}AUTOMATION TOOL FOR MAJ*R{reset}
                     {green}Coder : {white}- @snackshell{reset}
                     {green}Remember : {white}every action has consequences{reset}
-    """   
+    """
+    print(banner)
+    
+    query_id = await get_query_id()
+
     if not await aiofiles.ospath.exists(proxy_file):
         async with aiofiles.open(proxy_file, "a") as w:
             pass
@@ -446,18 +449,17 @@ async def main():
             read = await r.read()
             config = json.loads(read)
             cfg = Config(auto_task=config.get("auto_task", True))
-        datas, proxies = await get_data()
+        proxies = await get_data()
         menu = f"""
 {green}data file :{white} {data_file}
 {green}proxy file :{white} {proxy_file}
-{green}total data : {white}{len(datas)}
+{green}total data : {white}{1}  # Always one query_id
 {green}total proxy : {white}{len(proxies)}
 
     {green}1{white}. set on/off auto task ({(green + "active" if cfg.auto_task else red + "non-active")}{reset})
     {green}2{white}. start bot {green}(multi-process)
     {green}3{white}. start bot {green}(single process)
         """
-        print(banner)
         print(menu)
         if not opt:
             opt = input(f"{green}input number : {white}") or None
@@ -477,10 +479,9 @@ async def main():
         elif opt == "2":
             await init()
             while True:
-                datas, proxies = await get_data()  # Fetch query_id and proxies
                 tasks = [
-                    asyncio.create_task(bound(sem, (no, data, proxies, cfg)))
-                    for no, data in enumerate(datas)
+                    asyncio.create_task(bound(sem, (no, query_id, proxies, cfg)))
+                    for no in range(1)  # Always one query_id
                 ]
                 results = await asyncio.gather(*tasks)
                 _now = int(datetime.now().timestamp())
@@ -488,11 +489,9 @@ async def main():
         elif opt == "3":
             await init()
             while True:
-                datas, proxies = await get_data()  # Fetch query_id and proxies
                 countdowns = []
-                for no, data in enumerate(datas):
-                    result = await MajTod(no, data, proxies, cfg).start()
-                    countdowns.append(result)
+                result = await MajTod(0, query_id, proxies, cfg).start()
+                countdowns.append(result)
                 now = int(datetime.now().timestamp())
                 await countdown(min(countdowns) - now)
 
