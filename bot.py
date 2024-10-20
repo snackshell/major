@@ -437,8 +437,8 @@ async def main():
 {red}██████╔╝██║  ██║██║ ╚████║██║  ██║    ╚██████╗╚██████╔╝██████╔╝███████╗███████║{reset}
 {red}╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝     ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝{reset}
 
-                    {yellow}AUTOMATION TOOL FOR MAJ*R{reset}
-                    {white}Coder : {green}- @snackshell{reset}
+                    {red}AUTOMATION TOOL FOR MAJ*R{reset}
+                    {green}Coder : {white}- @snackshell{reset}
                     {green}Remember : {white}every action has consequences{reset}
     """   
     if not await aiofiles.ospath.exists(proxy_file):
